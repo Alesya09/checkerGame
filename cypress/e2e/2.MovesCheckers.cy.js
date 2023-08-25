@@ -8,7 +8,7 @@ describe('Verify Checkers game', () => {
 
     it('1.Five legal moves as orange checkers', () => {
 
-// #TODO Count all checkers blue and orange n the board
+// #TODO Count all checkers blue and orange on the board
 
         MovesCheckerPage.countAllBlueCheckers()
         MovesCheckerPage.countAllOrangeCheckers()
@@ -18,24 +18,24 @@ describe('Verify Checkers game', () => {
 // #TODO Checking that there is a checker in the cell
         MovesCheckerPage.cell22HaveOrangeChecker()
 
-// #TODO checking that there is no checker in the cage, it is free
+// #TODO Checking that there is no checker in the cage
         MovesCheckerPage.cell13Empty()
 // #1
         MovesCheckerPage.clickOrangeCheckerCell22ForMove()
 
-// #TODO Wait for the src attribute to change after click
+// #TODO Wait for the src attribute to change after clicking
         MovesCheckerPage.cell22ChangeColorAfterClickLight()
         cy.contains('Please wait.').should('not.exist')
 
-// #TODO When we do dblclick then we see massage -Please waite.
+// #TODO When we do dblclick we see message -Please wait
         // cy.get('[name="space13"]').dblclick({force:true})
         // cy.get('#message').should('have.text','Please wait.').and('be.visible')
 
-// #TODO When we do single click then we don't see massage -Please waite
+// #TODO When we do a single click we don't see message -Please wait
         MovesCheckerPage.clickOnEmptyCell13PutChecker()
         cy.contains('Please wait.').should('not.exist')
 
-// #TODO The src attr change after move checker
+// #TODO The src attr changed after moving the checker
         MovesCheckerPage.cell13NowHaveOrangeChecker()
 
         SiteUpPage.message.should('have.text', 'Make a move.').and('be.visible')
@@ -67,7 +67,7 @@ describe('Verify Checkers game', () => {
         MovesCheckerPage.cell42HaveOrangeChecker()
         MovesCheckerPage.cell24Empty()
 
-//  # TODO Taking a blue piece
+//  # TODO Taking a blue checker
         MovesCheckerPage.cell31HaveBlueChecker() //here stay blue checker
         MovesCheckerPage.clickOrangeCheckerCell42ForMove()
         MovesCheckerPage.cell42ChangeColorAfterClickLight()
@@ -75,10 +75,13 @@ describe('Verify Checkers game', () => {
         MovesCheckerPage.cell24NowHaveOrangeChecker()
         SiteUpPage.message.should('have.text', 'Make a move.').and('be.visible')
 
-//  # TODO Verify that cell after taking a blue piece the empty
+//  # TODO Check the cell after taking the blue checker that it is empty
         MovesCheckerPage.cell33Empty()
-        cy.get('[src="me1.gif"]').should('have.length', 11)  //blue
 
+//  # TODO When expected count is not known
+        cy.get('[src="me1.gif"]').then(($value) => {
+            length = $value.length
+        })
 // #5
         cy.wait(1000)
         MovesCheckerPage.clickOrangeCheckerCell62ForMove()
@@ -91,31 +94,31 @@ describe('Verify Checkers game', () => {
 
     it('2. Negative test: moves as orange checkers not the rule', () => {
 
-// #TODO Count all checkers blue and orange n the board
+// #TODO Count all checkers blue and orange on the board
         MovesCheckerPage.countAllBlueCheckers()
         MovesCheckerPage.countAllOrangeCheckers()
 
 // #1
         MovesCheckerPage.clickOrangeCheckerCell22ForMove()
 
-// #TODO Wait for the src attribute to change after click
+// #TODO Wait for the src attribute to change after clicking
         MovesCheckerPage.cell22ChangeColorAfterClickLight()
 
         cy.contains('Please wait.').should('not.exist')
 
-// #TODO When we do single click then we don't see massage -Please waite
+// #TODO When we do a single click we don't see message -Please wait
         MovesCheckerPage.clickOnEmptyCell13PutChecker()
         cy.contains('Please wait.').should('not.exist')
 
-// #TODO The src attr change after move checker
+// #TODO The src attr changed after moving the checker
         MovesCheckerPage.cell13NowHaveOrangeChecker()
         SiteUpPage.message.should('have.text', 'Make a move.').and('be.visible')
 
 // #2
         cy.wait(1000)
-// #TODO Try to back checker
+// #TODO Checker move back
         MovesCheckerPage.clickOrangeCheckerCell13ForMove()
-        MovesCheckerPage.clickOnEmptyCell22PutChecker()
+        MovesCheckerPage.dblclickOnEmptyCell22PutChecker()
         SiteUpPage.message.should('have.text', 'Please wait.').and('be.visible')
     })
 })

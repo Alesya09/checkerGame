@@ -109,12 +109,9 @@ class MovesCheckerPage {
     clickOrangeCheckerCell13ForMove(){
         this.elements.cell13().click({force: true})
     }
-    clickOnEmptyCell22PutChecker(){
-        this.elements.cell73().dblclick({force: true})
+    dblclickOnEmptyCell22PutChecker(){
+        this.elements.cell22().dblclick({force: true})
     }
-
-
-
 }
 
 export default new MovesCheckerPage()

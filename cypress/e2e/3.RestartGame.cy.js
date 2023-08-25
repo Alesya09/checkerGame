@@ -1,4 +1,5 @@
 import SiteUpPage from "../pages/siteUp.page";
+import MovesCheckerPage from "../pages/movesChecker.page";
 
 describe('Verify Checkers game', () => {
     beforeEach(() => {
@@ -6,11 +7,19 @@ describe('Verify Checkers game', () => {
         cy.fixture("url.json").as("urlData")
     })
 
-    it('3. Restart game after 5 legal moves', function () {
+    it('3. Restart and reload the game after moving the checker', function () {
 
+        MovesCheckerPage.clickOrangeCheckerCell22ForMove()
+        MovesCheckerPage.clickOnEmptyCell13PutChecker()
+        MovesCheckerPage.cell13NowHaveOrangeChecker()
         SiteUpPage.footNote.should('contain', 'Restart...').and('be.visible')
         SiteUpPage.footNote.contains('Restart...').click()
-        cy.url().should('be.equal', this.urlData.homePage)
-    })
+        cy.url().should('eq', this.urlData.homePage)
 
+        MovesCheckerPage.clickOrangeCheckerCell22ForMove()
+        MovesCheckerPage.clickOnEmptyCell13PutChecker()
+        MovesCheckerPage.cell13NowHaveOrangeChecker()
+        cy.reload()
+        cy.url().should('eq', this.urlData.homePage)
+    })
 })
