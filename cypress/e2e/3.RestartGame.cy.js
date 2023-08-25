@@ -14,7 +14,7 @@ describe('Verify Checkers game', () => {
         MovesCheckerPage.cell13NowHaveOrangeChecker()
         SiteUpPage.footNote.should('contain', 'Restart...').and('be.visible')
         SiteUpPage.footNote.contains('Restart...').click()
-        cy.url().should('eq', this.urlData.homePage)
+        cy.url().should('eq', this.urlData.homePage) // we see the correct home page
 
         MovesCheckerPage.clickOrangeCheckerCell22ForMove()
         MovesCheckerPage.clickOnEmptyCell13PutChecker()

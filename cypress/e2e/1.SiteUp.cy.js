@@ -9,7 +9,7 @@ describe('Verify Checkers game', () => {
 
     it('1.Verify that the site is up', function () {
 
-//#TODO By sending a GET request, we check that the site is loading and working correctly
+//#TODO By sending a GET request, we check that the site is loading and nothing crashes, that it  is a checker game
 // #1
         // cy.request(`/`).as('checkersRequest');
         // cy.get('@checkersRequest').then(checkers => {
