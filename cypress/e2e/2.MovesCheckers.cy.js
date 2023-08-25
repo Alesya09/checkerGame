@@ -89,7 +89,7 @@ describe('Verify Checkers game', () => {
         SiteUpPage.message.should('have.text', 'Make a move.').and('be.visible')
     })
 
-    it.only('2. Negative test: moves as orange checkers not the rule', () => {
+    it('2. Negative test: moves as orange checkers not the rule', () => {
 
 // #TODO Count all checkers blue and orange n the board
         MovesCheckerPage.countAllBlueCheckers()
