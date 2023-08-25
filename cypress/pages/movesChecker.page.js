@@ -100,7 +100,7 @@ class MovesCheckerPage {
     cell62ChangeColorAfterClickLight(){
         this.elements.cell62().should("have.attr", "src", "you2.gif")
     }
-    clickOnEmptyCell73PutChecker(){
+    dblclickOnEmptyCell73PutChecker(){
         this.elements.cell73().dblclick({force: true})
     }
     cell73NowHaveOrangeChecker(){

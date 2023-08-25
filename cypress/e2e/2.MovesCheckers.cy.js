@@ -23,26 +23,29 @@ describe('Verify Checkers game', () => {
 
 // #1 move
         MovesCheckerPage.clickOrangeCheckerCell22ForMove()
+//After one click on the checker (Before moving), we see the message has not changed.
+// what are the requirements about this message?
+        SiteUpPage.message.should('have.text', 'Select an orange piece to move.')
 
 // #TODO Wait for the src attribute to change after clicking (the checker is highlighted)
         MovesCheckerPage.cell22ChangeColorAfterClickLight()
         cy.contains('Please wait.').should('not.exist')
 
-// #TODO When we do dblclick we see message -Please wait.
-//  I would like to know what are the requirements (there must be one or two clicks on the checker to move
-//  and what message should we see after clicking on the checker)
+// #TODO When we do dblclick (Before moving) we see message -Please wait.
+// At this time the blue checkers are moving and we must wait
         // cy.get('[name="space13"]').dblclick({force:true})
         // cy.get('#message').should('have.text','Please wait.').and('be.visible')
 
-// #TODO We move the selected checker one cell forward according to the rules
-// What are the requirements? Then move the blue checkers and we should see the message -Wait
+// #TODO We move the selected checker one cell forward according to the rules. One click
         MovesCheckerPage.clickOnEmptyCell13PutChecker()
-// What are the requirements? Then next move the blue checkers and we should see the message -Please wait
+// What are the requirements about message? Then the blue checkers move. We should see the message - -Please wait or not?
+// I think we should see a message - Please wait. And only after the computer has made a move should we see the message - Make a move.
         cy.contains('Please wait.').should('not.exist')
 
-// #TODO The src attr changed after moving the checker (the checker is highlighted)
+// #TODO The src attr changed After moving the checker (the checker is highlighted)
+//After moving while the orange checker is highlighted at this time, the blue checkers move
         MovesCheckerPage.cell13NowHaveOrangeChecker()
-// We see message - Make a move, and we can make our next move
+// At this time we see the message - Make a move
         SiteUpPage.message.should('have.text', 'Make a move.').and('be.visible')
 
 // #2 move
@@ -92,7 +95,7 @@ describe('Verify Checkers game', () => {
         cy.wait(1000)
         MovesCheckerPage.clickOrangeCheckerCell62ForMove()
         MovesCheckerPage.cell62ChangeColorAfterClickLight()
-        MovesCheckerPage.clickOnEmptyCell73PutChecker()
+        MovesCheckerPage.dblclickOnEmptyCell73PutChecker()
         SiteUpPage.message.should('have.text', 'Please wait.').and('be.visible')
         MovesCheckerPage.cell73NowHaveOrangeChecker()
         SiteUpPage.message.should('have.text', 'Make a move.').and('be.visible')
@@ -104,7 +107,7 @@ describe('Verify Checkers game', () => {
         MovesCheckerPage.countAllBlueCheckers()
         MovesCheckerPage.countAllOrangeCheckers()
 
-// #1
+// #1 move
         MovesCheckerPage.clickOrangeCheckerCell22ForMove()
 
 // #TODO Wait for the src attribute to change after clicking (the checker is highlighted)
@@ -120,7 +123,7 @@ describe('Verify Checkers game', () => {
         MovesCheckerPage.cell13NowHaveOrangeChecker()
         SiteUpPage.message.should('have.text', 'Make a move.').and('be.visible')
 
-// #2
+// #2 move
         cy.wait(1000)
 // #TODO Checker move back (not by the rules)
         MovesCheckerPage.clickOrangeCheckerCell13ForMove()
