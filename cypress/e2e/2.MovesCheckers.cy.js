@@ -17,7 +17,7 @@ describe('Verify Checkers game', () => {
 // #TODO Checking that there is a orange checker in the cell
         MovesCheckerPage.cell22HaveOrangeChecker()
 
-// #TODO Checking that there is No checker in the cage
+// #TODO Checking that there is No checker in the cell
         MovesCheckerPage.cell13Empty()
 
 
@@ -88,11 +88,11 @@ describe('Verify Checkers game', () => {
 
 //  # TODO When expected count is not known
 // Check that there are less  blue checkers
+        cy.wait(1000)
         cy.get('[src="me1.gif"]').then(($value) => {
             length = $value.length
         })
 // #5 move
-        cy.wait(1000)
         MovesCheckerPage.clickOrangeCheckerCell62ForMove()
         MovesCheckerPage.cell62ChangeColorAfterClickLight()
         MovesCheckerPage.dblclickOnEmptyCell73PutChecker()

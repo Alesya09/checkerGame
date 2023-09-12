@@ -22,6 +22,7 @@ describe('Verify Checkers game', () => {
             .should('be.eq', 200)
 
         SiteUpPage.header.should('have.text', 'Checkers').and('be.visible')
+        cy.get('.boardWrapper').should('exist')
 
         SiteUpPage.message.should('have.text', 'Select an orange piece to move.')
             .and('be.visible')
